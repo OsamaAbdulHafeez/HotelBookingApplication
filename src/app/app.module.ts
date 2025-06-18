@@ -13,6 +13,7 @@ import { BookingCalenderComponent } from './pages/booking-calender/booking-calen
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     BookingListComponent,
     BookingCalenderComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

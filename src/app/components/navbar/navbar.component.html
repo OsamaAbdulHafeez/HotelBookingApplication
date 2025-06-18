@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Booking - Navigation</title>
+    <base target="_self" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <nav
+      class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm sticky top-0 z-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Left section - Logo, Search, Username -->
+          <div class="flex items-center flex-1">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+              <i class="fas fa-hotel text-[#0284c7] text-2xl mr-2"></i>
+              <span class="text-xl font-semibold text-gray-800 dark:text-white"
+                >HotelBooking</span
+              >
+            </div>
+
+            <!-- Search Bar -->
+            <div class="ml-6 flex-1 max-w-md">
+              <div
+                class="search-focus relative rounded-md shadow-sm transition-all duration-200"
+              >
+                <div
+                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                >
+                  <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search hotels, locations..."
+                  class="block w-full pl-10 pr-12 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center">
+                  <button
+                    id="searchButton"
+                    class="px-3 h-full bg-[#0284c7] text-white rounded-r-md hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right section - Navigation links and user dropdown -->
+          <div class="flex items-center">
+            <!-- Navigation Links -->
+            <div class="hidden md:ml-6 md:flex md:space-x-8">
+              <a
+                *ngFor="let link of navLinks; let i = index"
+                [routerLink]="link.route"
+                (click)="isActive = link.label"
+                class="nav-link inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                [ngClass]="{
+                  'border-[#0284c7] text-gray-900 dark:text-white': isActive === link.label,
+                  'border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200':
+                    isActive !== link.label
+                }"
+              >
+                {{ link.label }}
+              </a>
+            </div>
+
+            <!-- User dropdown -->
+            <div class="ml-6 dropdown relative">
+              <button class="flex items-center space-x-2 focus:outline-none">
+                <div
+                  class="h-8 w-8 rounded-full bg-blue-100 dark:bg-primary-900 flex items-center justify-center text-[#0284c7] dark:text-primary-300 font-medium"
+                >
+                  <span id="usernameInitial">U</span>
+                </div>
+                <span
+                  class="text-gray-700 dark:text-gray-200 text-sm font-medium hidden md:inline"
+                  id="usernameDisplay"
+                  >User</span
+                >
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </button>
+
+              <!-- Dropdown menu -->
+              <div
+                class="dropdown-menu absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none py-1 z-50"
+              >
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
+                  <i class="fas fa-user mr-2"></i> Profile
+                </a>
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
+                  <i class="fas fa-cog mr-2"></i> Settings
+                </a>
+                <a
+                  href="#"
+                  class="dropdown-item block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
+                  <i class="fas fa-bookmark mr-2"></i> My Bookings
+                </a>
+                <div
+                  class="border-t border-gray-200 dark:border-gray-600 my-1"
+                ></div>
+                <a
+                  href="#"
+                  id="logoutButton"
+                  class="dropdown-item block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >
+                  <i class="fas fa-sign-out-alt mr-2"></i> Sign out
+                </a>
+              </div>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button
+              id="mobileMenuButton"
+              class="md:hidden ml-4 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+      >
+        <div class="pt-2 pb-3 space-y-1">
+          <a
+            href="#"
+            class="mobile-nav-link bg-primary-50 dark:bg-gray-700 text-primary-600 dark:text-primary-300 block pl-3 pr-4 py-2 border-l-4 border-primary-500 text-base font-medium"
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            class="mobile-nav-link border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+          >
+            Hotels
+          </a>
+          <a
+            href="#"
+            class="mobile-nav-link border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+          >
+            Deals
+          </a>
+          <a
+            href="#"
+            class="mobile-nav-link border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+          >
+            Contact
+          </a>
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center px-4">
+            <div
+              class="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-primary-600 dark:text-primary-300 font-medium"
+            >
+              <span id="mobileUsernameInitial">U</span>
+            </div>
+            <div class="ml-3">
+              <div
+                class="text-base font-medium text-gray-800 dark:text-white"
+                id="mobileUsernameDisplay"
+              >
+                User
+              </div>
+              <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                userexample.com
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 space-y-1">
+            <a
+              href="#"
+              class="block px-4 py-2 text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <i class="fas fa-user mr-2"></i> Profile
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <i class="fas fa-cog mr-2"></i> Settings
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-base font-medium text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <i class="fas fa-bookmark mr-2"></i> My Bookings
+            </a>
+            <a
+              href="#"
+              id="mobileLogoutButton"
+              class="block px-4 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <i class="fas fa-sign-out-alt mr-2"></i> Sign out
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

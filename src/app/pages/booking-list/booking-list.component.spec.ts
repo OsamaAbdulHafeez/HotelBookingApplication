@@ -11,7 +11,7 @@ describe('BookingListComponent', () => {
       declarations: [BookingListComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(BookingListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

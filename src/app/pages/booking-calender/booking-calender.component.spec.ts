@@ -11,7 +11,7 @@ describe('BookingCalenderComponent', () => {
       declarations: [BookingCalenderComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(BookingCalenderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
